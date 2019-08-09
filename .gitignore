@@ -1,0 +1,8 @@
+node_modules
+log
+coverage
+dist/**/*
+
+
+.env
+yarn.lock
