@@ -1,9 +1,19 @@
 import request from "supertest";
 import { expect} from "chai";
-import app from "./../../src/app";
-import config from "./../../src/config";
+import initApp from "../../src/app";
+import config from "../../src/config";
+import {Application} from "express";
+
+
 
 describe("GET /random-url", () => {
+
+    let app: Application;
+
+    beforeAll(async function() {
+        app = await initApp();
+    });
+
     it("should return 404", (done) => {
         request(app).get("/random-url")
             .expect(404, done);
@@ -11,6 +21,13 @@ describe("GET /random-url", () => {
 });
 
 describe("GET /ping", () => {
+
+    let app: Application;
+
+    beforeAll(async function() {
+        app = await initApp();
+    });    
+
     it("should return 200", (done) => {
         request(app).get("/ping")
             .expect(200)
